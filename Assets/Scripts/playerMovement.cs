@@ -8,15 +8,12 @@ public class playerMovement : MonoBehaviour
 {
     [Header("Components")]
 
-        private InputActions input = null;
         private Rigidbody2D body;
         private BoxCollider2D hitbox;
 
-        InputAction moveAction;
-        InputAction jumpAction;
-
         [Header("Movement Stats")]
         [SerializeField, Range(0f, 40f)][Tooltip("Maximum movement speed")] public float maxSpeed = 10f;
+        [SerializeField, Range(0f, 40f)][Tooltip("Maximum jump speed")] public float jumpStrength = 10f;
         [SerializeField, Range(0f, 100f)][Tooltip("How fast to reach max speed")] public float maxAcceleration = 52f;
         [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop after letting go")] public float maxDecceleration = 52f;
 
@@ -31,42 +28,33 @@ public class playerMovement : MonoBehaviour
         private float acceleration;
         private float deceleration;
         private float turnSpeed;
-
-        [Header("Current State")]
-        public bool onGround;
-    // Start is called before the first frame update
+        [SerializeField, Range(0f, 5f)]public float castLength;
+        public bool onGround; 
+        private float horizontal;
+        
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<BoxCollider2D>();
-        input = new InputActions();
-        
-
-    }
-    private void OnEnable(){
-        input.Enable();
-        input.Player.Movement.performed += OnMovementPerformed;
-        input.Player.Movement.canceled += OnMovementCancelled;
-    }
-
-    private void onDisable(){
-        input.Disable();
-        input.Player.Movement.performed -= OnMovementPerformed;
-        input.Player.Movement.canceled -= OnMovementCancelled;
     }
 
     void FixedUpdate(){
+        body.velocity = new Vector2(horizontal*maxSpeed, body.velocity.y);
         velocity = body.velocity;
-        body.velocity = desiredVelocity;
+        
+        onGround = Physics2D.Raycast(transform.position, Vector2.down, castLength, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(transform.position, Vector2.down * castLength, Color.red);
+
     }
 
-    private void OnMovementPerformed(InputAction.CallbackContext value){
-        desiredVelocity = value.ReadValue<Vector2>()*maxSpeed;
+     public void OnMovement(InputAction.CallbackContext value){
+        horizontal = value.ReadValue<Vector2>().x;
         
     }
-    private void OnMovementCancelled(InputAction.CallbackContext value){
-        desiredVelocity = Vector2.zero;
+    public void OnJump(InputAction.CallbackContext ctx){
+        Debug.Log("jump pressed");
+        if(onGround){
+            body.velocity = new Vector2(body.velocity.x, jumpStrength);
+        }
     }
-    
-
 }
