@@ -10,7 +10,7 @@ public class playerMovement : MonoBehaviour
 
         private Rigidbody2D body;
         private BoxCollider2D hitbox;
-
+        [SerializeField]bubbleController bc;
         [Header("Movement Stats")]
         [SerializeField, Range(0f, 40f)][Tooltip("Maximum movement speed")] public float maxSpeed = 10f;
         [SerializeField, Range(0f, 40f)][Tooltip("Maximum jump speed")] public float jumpStrength = 10f;
@@ -55,6 +55,13 @@ public class playerMovement : MonoBehaviour
         Debug.Log("jump pressed");
         if(onGround){
             body.velocity = new Vector2(body.velocity.x, jumpStrength);
+        }
+    }
+    public void OnBlow(InputAction.CallbackContext ctx){
+        if(ctx.started){
+            bc.StartBlow();
+        }else if(ctx.canceled){
+            bc.StopBlowingShoot();
         }
     }
 }
