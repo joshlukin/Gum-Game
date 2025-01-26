@@ -36,26 +36,17 @@ public class playerMovement : MonoBehaviour
         private float horizontal;
 
         [SerializeField] TMP_Text textBox;
-        [SerializeField] GameObject pointPrefab;
         public int points=0;
 
-        private GameObject lastPointSq;
 
         
     void Start(){
-        lastPointSq = GameObject.Find("LastPointSqPlaceHolder");
         points=0;
     }
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<BoxCollider2D>();
-    }
-    void Update(){
-        if(points>=3f){
-            Debug.Log("surpassed");
-            points=0;
-        }
     }
 
     void FixedUpdate(){
@@ -95,11 +86,9 @@ public class playerMovement : MonoBehaviour
         Debug.Log("OnCandyHit called.");
         points++;
         Debug.Log("Points after increment: " + points);
-        // textBox.text = "Candy Collected: " + points + "/5";
-        //lastPointSq = Instantiate(pointPrefab, lastPointSq.transform.position+new Vector3(4f, 0f, 0f), Quaternion.identity);
         if (textBox != null)
         {
-           textBox.text = "Candy Collected: " + points + "/5";
+           textBox.text = "Candy Collected: " + points + "/4";
             Debug.Log("Text updated: " + textBox.text);
         }else{
             Debug.Log("Text is null");
