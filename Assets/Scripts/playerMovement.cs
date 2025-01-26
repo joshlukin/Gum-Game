@@ -35,19 +35,19 @@ public class playerMovement : MonoBehaviour
         public bool onGround; 
         private float horizontal;
 
-        private TextMeshPro textBox;
-        public float points =0;
+        [SerializeField] TMP_Text textBox;
+        public float points;
 
         
         
     void Awake()
     {
-        textBox = GetComponent<TextMeshPro>();
         body = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<BoxCollider2D>();
     }
     void Update(){
         textBox.text = "Candy Collected: "+ points + "/5";
+        Debug.Log(points);
     }
 
     void FixedUpdate(){
@@ -64,7 +64,6 @@ public class playerMovement : MonoBehaviour
         
     }
     public void OnJump(InputAction.CallbackContext ctx){
-        Debug.Log("jump pressed");
         if(onGround){
             body.velocity = new Vector2(body.velocity.x, jumpStrength);
         }
@@ -77,13 +76,8 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col){
-        
-    }
 
     public void OnCandyHit(String type){
-        if(type.Equals("red")){
-            points+=1f;
-        }
+        Debug.Log("candy hit");
     }
 }
