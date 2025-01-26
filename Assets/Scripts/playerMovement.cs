@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.Video;
+using System;
 
 public class playerMovement : MonoBehaviour
 {
@@ -63,5 +65,16 @@ public class playerMovement : MonoBehaviour
         }else if(ctx.canceled){
             bc.StopBlowingShoot();
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.tag.Equals("Gum")){
+            Debug.Log("Hit");
+            Destroy(col.gameObject);
+        }
+    }
+
+    public void OnCandyHit(String type){
+        
     }
 }

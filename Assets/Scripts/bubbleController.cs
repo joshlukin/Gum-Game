@@ -17,7 +17,7 @@ public class bubbleController : MonoBehaviour
     [SerializeField] GameObject bubblePrefab;
 
     [SerializeField] Camera cam;
-     private GameObject currentBubble;
+     public GameObject currentBubble;
      
 
     void Awake(){
