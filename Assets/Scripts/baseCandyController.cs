@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class baseCandyController : MonoBehaviour
 {
-    [SerializeField] playerMovement playerRef;
+    [SerializeField]  GameObject playerRef;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +17,11 @@ public class baseCandyController : MonoBehaviour
         
     }
 
-    
+    void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.tag.Equals("Gum")){
+            playerRef.GetComponent<playerMovement>().OnCandyHit("red");
+            Destroy(col.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
 }

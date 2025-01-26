@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.Video;
+using TMPro;
 using System;
 
 public class playerMovement : MonoBehaviour
@@ -33,11 +34,20 @@ public class playerMovement : MonoBehaviour
         [SerializeField, Range(0f, 5f)]public float castLength;
         public bool onGround; 
         private float horizontal;
+
+        private TextMeshPro textBox;
+        public float points =0;
+
+        
         
     void Awake()
     {
+        textBox = GetComponent<TextMeshPro>();
         body = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<BoxCollider2D>();
+    }
+    void Update(){
+        textBox.text = "Candy Collected: "+ points + "/5";
     }
 
     void FixedUpdate(){
@@ -68,13 +78,12 @@ public class playerMovement : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.tag.Equals("Gum")){
-            Debug.Log("Hit");
-            Destroy(col.gameObject);
-        }
+        
     }
 
     public void OnCandyHit(String type){
-        
+        if(type.Equals("red")){
+            points+=1f;
+        }
     }
 }

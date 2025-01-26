@@ -20,7 +20,8 @@ public class bubbleController : MonoBehaviour
      public GameObject currentBubble;
      
 
-    void Awake(){
+    void Start(){
+        
     }
 
     void FixedUpdate()
@@ -44,6 +45,7 @@ public class bubbleController : MonoBehaviour
 
     public void StopBlowingShoot(){
         if(currentBubble!=null){
+            Physics2D.IgnoreCollision(currentBubble.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             isBlowing = false;
             currentBubble.transform.SetParent(null);
             Rigidbody2D rb = currentBubble.GetComponent<Rigidbody2D>();
