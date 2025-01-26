@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class baseCandyController : MonoBehaviour
 {
-    [SerializeField]  GameObject playerRef;
+      [SerializeField]GameObject playerRef;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRef = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -27,7 +27,8 @@ public class baseCandyController : MonoBehaviour
             if (playerMovementComponent != null)
             {
                 Debug.Log("Calling OnCandyHit on playerMovement");
-                playerMovementComponent.OnCandyHit("null");
+                //playerMovementComponent.OnCandyHit("null");
+                playerMovementComponent.OnCandyHit("empty");
                 Destroy(col.gameObject,0.1f);
                 Destroy(this.gameObject, 0.1f);
             }
