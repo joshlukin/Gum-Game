@@ -656,6 +656,65 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &1012830424
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073505, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632018719728073507, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
+      propertyPath: m_Name
+      value: Jelly Bean (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9cc09974423c1e64984a7b03a74f12a4, type: 3}
 --- !u!1001 &1050903028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5948547911448401653, guid: c33d824c725de844a999e1cb4a6d38dc, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5948547911448401653, guid: c33d824c725de844a999e1cb4a6d38dc, type: 3}
       propertyPath: m_LocalScale.x
@@ -1668,5 +1727,6 @@ MonoBehaviour:
   isBlowing: 0
   bubbleSize: 0.5
   bubblePrefab: {fileID: 2612687737028489013, guid: 3475d246dfd6e034d8efad31a917fc88, type: 3}
+  gumType: 
   cam: {fileID: 519420031}
   currentBubble: {fileID: 0}

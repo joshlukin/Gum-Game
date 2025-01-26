@@ -32,6 +32,7 @@ public class upAndDown : MonoBehaviour
 		if(col.gameObject.tag == "Gum"){
 			Debug.Log("gum hit water");
 			GetComponent<Collider2D>().isTrigger = false;
+			GetComponent<SpriteRenderer>().color = Color.white;
 			Destroy(col.gameObject);
 		}
 	}

@@ -52,7 +52,7 @@ public class playerMovement : MonoBehaviour
     }
 
     void Update(){
-        if(SceneManager.GetActiveScene().buildIndex+1 ==3){
+        if(SceneManager.GetActiveScene().buildIndex+1 >3){
             Application.Quit();
         }
         if(points>=5){
