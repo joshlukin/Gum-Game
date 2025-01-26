@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.Video;
 using TMPro;
+using UnityEngine.SceneManagement;
 using System;
 
 public class playerMovement : MonoBehaviour
@@ -35,6 +36,7 @@ public class playerMovement : MonoBehaviour
         public bool onGround; 
         private float horizontal;
 
+
         [SerializeField] TMP_Text textBox;
         public int points=0;
 
@@ -49,6 +51,14 @@ public class playerMovement : MonoBehaviour
         hitbox = GetComponent<BoxCollider2D>();
     }
 
+    void Update(){
+        if(SceneManager.GetActiveScene().buildIndex+1 ==3){
+            Application.Quit();
+        }
+        if(points>=5){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
+    }
     void FixedUpdate(){
         body.velocity = new Vector2(horizontal*maxSpeed, body.velocity.y);
         velocity = body.velocity;
@@ -88,11 +98,18 @@ public class playerMovement : MonoBehaviour
         Debug.Log("Points after increment: " + points);
         if (textBox != null)
         {
-           textBox.text = "Candy Collected: " + points + "/4";
+           textBox.text = "Candy Collected: " + points + "/5";
             Debug.Log("Text updated: " + textBox.text);
         }else{
             Debug.Log("Text is null");
         }
     }
 
+    void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.tag == "Lava"){
+            transform.position = new Vector3(-30.88f, -13.73f, 0f);
+        }
+
+        
+    }
 }

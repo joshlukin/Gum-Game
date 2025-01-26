@@ -16,6 +16,7 @@ public class bubbleController : MonoBehaviour
     [SerializeField] float bubbleSize = 0.5f;
     [SerializeField] GameObject bubblePrefab;
 
+[SerializeField] string gumType;
     [SerializeField] Camera cam;
      public GameObject currentBubble;
      
@@ -39,6 +40,9 @@ public class bubbleController : MonoBehaviour
             isBlowing=true;
             bubbleSize = 0.5f;
             currentBubble = Instantiate(bubblePrefab, transform.position+new Vector3(spawnOffsetX, spawnOffsetY, 0f), Quaternion.identity);
+            if(gumType=="fire"){
+                currentBubble.GetComponent<SpriteRenderer>().color = Color.red;
+            }
             currentBubble.transform.SetParent(transform, true);
         }
     }
