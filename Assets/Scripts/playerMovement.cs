@@ -36,18 +36,20 @@ public class playerMovement : MonoBehaviour
         private float horizontal;
 
         [SerializeField] TMP_Text textBox;
-        public float points;
+        private int points=0;
 
         
-        
+    void Start(){
+        points=0;
+    }
     void Awake()
     {
+        Debug.Log("Awake pts:" + points);
         body = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<BoxCollider2D>();
     }
     void Update(){
-        textBox.text = "Candy Collected: "+ points + "/5";
-        Debug.Log(points);
+
     }
 
     void FixedUpdate(){
@@ -57,6 +59,11 @@ public class playerMovement : MonoBehaviour
         onGround = Physics2D.Raycast(transform.position, Vector2.down, castLength, LayerMask.GetMask("Ground"));
         Debug.DrawRay(transform.position, Vector2.down * castLength, Color.red);
 
+                Debug.Log("update"+points);
+        if(textBox ==null){
+            Debug.Log("TB NULL");
+        }
+        textBox.text = "Candy Collected: "+ points + "/5";
     }
 
      public void OnMovement(InputAction.CallbackContext value){
@@ -77,7 +84,18 @@ public class playerMovement : MonoBehaviour
     }
 
 
-    public void OnCandyHit(String type){
-        Debug.Log("candy hit");
+    public void OnCandyHit(string type)
+    {
+        Debug.Log("OnCandyHit called.");
+        points++;
+        Debug.Log("Points after increment: " + points);
+        // textBox.text = "Candy Collected: " + points + "/5";
+
+        if (textBox != null)
+        {
+            textBox.text = "Candy Collected: " + points + "/5";
+            Debug.Log("Text updated: " + textBox.text);
+        }
     }
+
 }

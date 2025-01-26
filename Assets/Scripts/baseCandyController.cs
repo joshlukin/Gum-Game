@@ -17,11 +17,29 @@ public class baseCandyController : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.tag.Equals("Gum")){
-            playerRef.GetComponent<playerMovement>().OnCandyHit("red");
-            Destroy(col.gameObject);
-            Destroy(this.gameObject);
+    void OnCollisionEnter2D(Collision2D col)
+{
+    if (col.gameObject.tag.Equals("Gum"))
+    {
+        if (playerRef != null)
+        {
+            playerMovement playerMovementComponent = playerRef.GetComponent<playerMovement>();
+            if (playerMovementComponent != null)
+            {
+                Debug.Log("Calling OnCandyHit on playerMovement");
+                playerMovementComponent.OnCandyHit("null");
+                Destroy(col.gameObject,0.1f);
+                Destroy(this.gameObject, 0.1f);
+            }
+            else
+            {
+                Debug.LogError("playerMovement component not found on playerRef!");
+            }
+        }
+        else
+        {
+            Debug.LogError("playerRef is null in baseCandyController!");
         }
     }
+}
 }
